@@ -1,0 +1,6 @@
+numpy
+langchain
+unstructured
+"unstructured[pdf]" 
+PyMuPDF 
+PyPDF2
