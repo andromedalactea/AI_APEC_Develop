@@ -1,6 +1,9 @@
 numpy
 langchain
-unstructured
-"unstructured[pdf]" 
-PyMuPDF 
+unstructured[pdf]
+PyMuPDF
 PyPDF2
+langchain_community
+python-dotenv
+openai
+opencv-python
