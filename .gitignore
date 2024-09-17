@@ -1,6 +1,7 @@
 # Custom Ignores
 /ignore_this
 /data
+/to_develop_purposes
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
