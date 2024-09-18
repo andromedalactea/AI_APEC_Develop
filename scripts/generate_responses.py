@@ -1,11 +1,13 @@
 # Import Standard Libraries
-import os
 import asyncio
 import json
 
+# Local imports from the same directory
+from scripts.extract_context_from_vs import extract_context_from_vector_search
+
 # Import Third-Party Libraries
 from fastapi.responses import JSONResponse, StreamingResponse
-from openai import OpenAI
+from openai import OpenAI, AsyncOpenAI
 from dotenv import load_dotenv
 
 # Load environment variables from the .env file
@@ -49,12 +51,13 @@ async def generate_chat_response(data):
         print(f"Error in generating chat responses: {e}")
         return JSONResponse(content={"error": {"message": "Internal server error"}}, status_code=500)
     
-import json
-import asyncio
-from openai import AsyncOpenAI  # Ensure to use the async version of OpenAI
 
 async def generate_chat_responses_stream(data):
     try:
+        # Extract the context for the model
+        context = str(extract_context_from_vector_search( str(data['messages'][-1]['content'])))
+        data["messages"].insert(-1, {"role": "system", "content": f"This is the context regarding of the user query:\n{context}"})
+        print(data["messages"])
         client = AsyncOpenAI()  # Use AsyncOpenAI for async handling
         print(data.get("model", "gpt-4o").split("_")[0])
 
@@ -110,6 +113,3 @@ async def generate_chat_responses_stream(data):
             }
         }
         yield f"data: {json.dumps(error_message)}\n\n"
-
-
-
