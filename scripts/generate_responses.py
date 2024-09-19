@@ -4,7 +4,7 @@ import json
 
 # Local imports from the same directory
 from scripts.extract_context_from_vs import extract_context_from_vector_search
-
+from scripts.image_to_base_64 import image_to_base64_markdown
 # Import Third-Party Libraries
 from fastapi.responses import JSONResponse, StreamingResponse
 from openai import OpenAI, AsyncOpenAI
@@ -66,13 +66,16 @@ async def generate_chat_responses_stream(data):
             model=data.get("model", "gpt-4o").split("_")[0],
             messages=data.get("messages", []),
             stream=True,
-            max_tokens=data.get("max_tokens", 150),
+            max_tokens=data.get("max_tokens", 1000),
         )
 
         # Use async for to handle streaming
+        image_md = image_to_base64_markdown("/home/andromedalactea/freelance/AI_APEC_Develop/to_develop_purposes/ecuatorial.png", "Here is an image included in the Markdown text:")
+        # print(image_md)
         async for chunk in stream:
             if chunk.choices[0].delta.content is not None:
                 message_content = chunk.choices[0].delta.content
+                # message_content += "![Alt text](https://pngimg.com/uploads/lgbt/lgbt_PNG38.png)" # Append the image markdown to the message content
                 # Formato alineado con la API de OpenAI para respuestas en streaming
                 message = {
                     "id": f"chatcmpl-stream-{asyncio.get_event_loop().time()}",

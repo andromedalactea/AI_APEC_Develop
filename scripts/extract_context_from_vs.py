@@ -11,10 +11,10 @@ load_dotenv(override=True)
 
 def extract_context_from_vector_search(query: str = 'white', k: int = 4):
 
-    MONGO_URI=os.environ["GIRLS_URI_MONGODB"]
-    DB_NAME = "GirldsDatabase"
-    COLLECTION_NAME_EMBEDDING = "embeddingGirls"
-    ATLAS_VECTOR_SEARCH_INDEX_NAME = "default"
+    MONGO_URI=os.environ["URI_MONGODB_VECTOR_SEARCH"]
+    DB_NAME = "apec_db"
+    COLLECTION_NAME_EMBEDDING = "apec_vectorstores"
+    ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index"
 
     # Load the environment variables
     load_dotenv(override=True)
@@ -28,7 +28,7 @@ def extract_context_from_vector_search(query: str = 'white', k: int = 4):
 
     # Create the connection to MongoDB and VectorSearch
     vector_search = MongoDBAtlasVectorSearch.from_connection_string(
-        os.environ["GIRLS_URI_MONGODB"],
+        MONGO_URI,
         DB_NAME + "." + COLLECTION_NAME_EMBEDDING,
         embedding=OpenAIEmbeddings(disallowed_special=(), model='text-embedding-3-large'),
         index_name = ATLAS_VECTOR_SEARCH_INDEX_NAME,

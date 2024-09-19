@@ -10,6 +10,8 @@ from scripts.generate_responses import generate_chat_response, generate_chat_res
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, StreamingResponse
+from pyngrok import ngrok
+
 
 # Load environment variables from the .env file
 load_dotenv(override=True)
@@ -84,4 +86,10 @@ async def get_chat_completions(request: Request):
 if __name__ == "__main__":
     import uvicorn
     # Running in 8000 port
+    # Persinalized domain
+    domain = "sex.ngrok.app"  
+
+    # Configure ngrok with the port on which Flask is running
+    ngrok_tunnel = ngrok.connect(8000, domain=domain)
+    print('NGROK Tunnel URL:', ngrok_tunnel.public_url)
     uvicorn.run(app, host="0.0.0.0", port=8000)
