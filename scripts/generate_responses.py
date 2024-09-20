@@ -85,7 +85,7 @@ async def generate_chat_responses_stream(data):
                     "model": data.get("model", "gpt-4o"),
                     "choices": [{
                         "delta": {
-                            "content": message_content
+                            "content": "\n\n" + message_content
                         },
                         "index": 0,
                         "finish_reason": None
