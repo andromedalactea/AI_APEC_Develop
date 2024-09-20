@@ -34,7 +34,7 @@ response_data = {
     "object": "list"
 }
 
-@app.get("/api/v1/models")
+@app.get("/v1/models")
 async def get_models():
 
 
@@ -62,11 +62,11 @@ async def get_models():
     return JSONResponse(content=response_data)
 
 
-@app.post("/api/v1/chat/completions")
+@app.post("/v1/chat/completions")
 async def get_chat_completions(request: Request):
     try:
         data = await request.json()
-        logger.info('Received POST request to /api/v1/chat/completions')
+        logger.info('Received POST request to /v1/chat/completions')
         logger.info(f'Received data: {data}')
 
         if data.get('stream') is True:
