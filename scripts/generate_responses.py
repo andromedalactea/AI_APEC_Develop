@@ -5,6 +5,7 @@ import json
 # Local imports from the same directory
 from scripts.extract_context_from_vs import extract_context_from_vector_search
 from scripts.image_to_base_64 import image_to_base64_markdown
+from scripts.auxiliar_functions import sources_to_md
 # Import Third-Party Libraries
 from fastapi.responses import JSONResponse, StreamingResponse
 from openai import OpenAI, AsyncOpenAI
@@ -55,7 +56,7 @@ async def generate_chat_response(data):
 async def generate_chat_responses_stream(data):
     try:
         # Extract the context for the model
-        context = str(extract_context_from_vector_search( str(data['messages'][-1]['content'])))
+        context, sources = extract_context_from_vector_search(str(data['messages'][-1]['content']))
         data["messages"].insert(-1, {"role": "system", "content": f"This is the context regarding of the user query:\n{context}"})
         print(data["messages"])
         client = AsyncOpenAI()  # Use AsyncOpenAI for async handling
@@ -93,6 +94,8 @@ async def generate_chat_responses_stream(data):
                 event = f"data: {json.dumps(message)}\n\n"
                 yield event
 
+        # Create the references in Markdown format
+        md_sources = sources_to_md(sources)
         # Enviar el mensaje de finalización del streaming
         end_message = {
             "id": "chatcmpl-stream-end",
@@ -100,7 +103,9 @@ async def generate_chat_responses_stream(data):
             "created": int(asyncio.get_event_loop().time()),
             "model": data.get("model", "APEC_model"),
             "choices": [{
-                "delta": {},
+                "delta": {
+                    "content": md_sources
+                },
                 "index": 0,
                 "finish_reason": "stop"
             }]

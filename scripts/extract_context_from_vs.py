@@ -13,7 +13,7 @@ def extract_context_from_vector_search(query: str = 'white', k: int = 4):
 
     MONGO_URI=os.environ["URI_MONGODB_VECTOR_SEARCH"]
     DB_NAME = "apec_db"
-    COLLECTION_NAME_EMBEDDING = "apec_vectorstores"
+    COLLECTION_NAME_EMBEDDING = "apec_vectorstores_official"
     ATLAS_VECTOR_SEARCH_INDEX_NAME = "vector_index"
 
     # Load the environment variables
@@ -46,10 +46,14 @@ def extract_context_from_vector_search(query: str = 'white', k: int = 4):
     filter_list = list(set(filter_list))
     
     string = " ".join(map(str, filter_list))
-    return string
+
+    # Now return sources info:
+    sources = [dict.metadata['source'] for dict, _ in results]
+
+    return string, sources
 
 
 # Example usage
 if __name__ == '__main__':
-    results = extract_context_from_vector_search()
-    print(results)  # Print the results of the vector search
+    string, sources = extract_context_from_vector_search()
+    print(sources)  # Print the results of the vector search
