@@ -10,7 +10,6 @@ from scripts.generate_responses import generate_chat_response, generate_chat_res
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, StreamingResponse
-from pyngrok import ngrok
 
 
 # Load environment variables from the .env file
