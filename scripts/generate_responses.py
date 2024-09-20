@@ -71,7 +71,7 @@ async def generate_chat_responses_stream(data):
         )
 
         # Use async for to handle streaming
-        image_md = image_to_base64_markdown("/home/andromedalactea/freelance/AI_APEC_Develop/to_develop_purposes/ecuatorial.png", "Here is an image included in the Markdown text:")
+        # image_md = image_to_base64_markdown("/home/andromedalactea/freelance/AI_APEC_Develop/to_develop_purposes/ecuatorial.png", "Here is an image included in the Markdown text:")
         # print(image_md)
         async for chunk in stream:
             if chunk.choices[0].delta.content is not None:
