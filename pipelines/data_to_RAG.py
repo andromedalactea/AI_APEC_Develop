@@ -141,7 +141,7 @@ class ProcessData:
 
 
 # Define the base path to process the data
-base_path = '/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001'
+base_path = '/mnt/apec-ai-feed/'
 
 # Create an Object to process the data
 process_data = ProcessData()
