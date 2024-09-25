@@ -19,9 +19,12 @@ from pymongo import MongoClient
 # Load the environment variables
 load_dotenv(override=True)
 
+def absolute_path(relative_path):
+    return os.path.normpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), relative_path))
+
 class ProcessData:
     def __init__(self,
-                 data_directory: str =  "../data/Books-20240918T233426Z-001",
+                 data_directory: str =  "../data/APEC_ChromaDB",
                  history_file: str = "../data/processed_files.txt",
                  error_file: str = "../data/error_files.txt",
                  embedding_model: str = "text-embedding-3-large"):
@@ -30,15 +33,16 @@ class ProcessData:
         self.documents = []
 
         # History file
-        os.makedirs(os.path.dirname(history_file), exist_ok=True)
-        self.history_file = history_file
+        self.history_file = absolute_path(history_file)
+        os.makedirs(os.path.dirname(self.history_file), exist_ok=True)
 
         # Error file
-        os.makedirs(os.path.dirname(error_file), exist_ok=True)
-        self.error_file = error_file
+        self.error_file = absolute_path(error_file)
+        os.makedirs(os.path.dirname(self.error_file), exist_ok=True)
+        
 
         # Define the Database to store the embeddings
-        self.data_directory = data_directory
+        self.data_directory = absolute_path(data_directory)
 
         # Load already processed files into memory
         self.processed_files = self.load_processed_files()
@@ -68,12 +72,17 @@ class ProcessData:
 
         MONGODB_COLLECTION = client[DB_NAME][COLLECTION_NAME]
 
-        self.vector_store = MongoDBAtlasVectorSearch(
-            collection=MONGODB_COLLECTION,
-            embedding=self.embedding_openai,
-            index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
-            relevance_score_fn="cosine",
-        )
+        # self.vector_store = MongoDBAtlasVectorSearch(
+        #     collection=MONGODB_COLLECTION,
+        #     embedding=self.embedding_openai,
+        #     index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
+        #     relevance_score_fn="cosine",
+        # )
+        self.vector_store = Chroma(
+                    collection_name="apec_vectorstores",
+                    embedding_function=self.embedding_openai,
+                    persist_directory=self.data_directory,  
+                )
 
     def load_processed_files(self):
         """
@@ -145,6 +154,7 @@ base_path = '/mnt/apec-ai-feed/'
 
 # Create an Object to process the data
 process_data = ProcessData()
+base_path = os.path.normpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), base_path))
 
 # Iterate over all files in a directory
 for dirpath, dirnames, filenames in os.walk(base_path):
