@@ -21,9 +21,9 @@ load_dotenv(override=True)
 
 class ProcessData:
     def __init__(self,
-                 data_directory: str =  "/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001",
-                 history_file: str = "/home/andromedalactea/freelance/AI_APEC_Develop/data/processed_files.txt",
-                 error_file: str = "/home/andromedalactea/freelance/AI_APEC_Develop/data/error_files.txt",
+                 data_directory: str =  "../data/Books-20240918T233426Z-001",
+                 history_file: str = "../data/processed_files.txt",
+                 error_file: str = "../data/error_files.txt",
                  embedding_model: str = "text-embedding-3-large"):
         
         # List to store the documents temporarily
@@ -141,7 +141,7 @@ class ProcessData:
 
 
 # Define the base path to process the data
-base_path = '/mnt/apec-ai-feed/'
+base_path = '/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001'
 
 # Create an Object to process the data
 process_data = ProcessData()
