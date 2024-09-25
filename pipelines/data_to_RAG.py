@@ -8,9 +8,10 @@ from dotenv import load_dotenv
 
 # Langchain imports
 from langchain_community.document_loaders import UnstructuredPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_core.documents import Document
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_mongodb.vectorstores import MongoDBAtlasVectorSearch
 from pymongo import MongoClient
@@ -98,7 +99,7 @@ class ProcessData:
                 return 'Skipped'
 
             # Load the file
-            loader = UnstructuredPDFLoader(filepath)
+            loader = PyPDFLoader(filepath)
             data = loader.load()
 
             # Split the text into chunks

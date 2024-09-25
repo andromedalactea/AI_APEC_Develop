@@ -13,3 +13,5 @@ langchain_chroma
 pysftp
 pymongo
 langchain_mongodb
+pypdf
+langchain-openai

@@ -1,1 +1,3 @@
 /home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Astrophysics_of_Planet_Formation.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/interior_de_Ceres_Maritza_Caballero.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/TrabajoDeGrado_JeronimoCalderon_2022.pdf
