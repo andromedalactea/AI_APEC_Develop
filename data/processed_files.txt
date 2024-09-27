@@ -2,3 +2,13 @@
 /home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/interior_de_Ceres_Maritza_Caballero.pdf
 /home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/TrabajoDeGrado_JeronimoCalderon_2022.pdf
 /home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Imke de Pater, Jack J. Lissauer - Planetary Sciences-Cambridge University Press (2015).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Encyclopedia_of_the_Solar_System.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Imke De Pater, Jack Jonathan Lissauer - Planetary sciences-Cambridge University Press (2001).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Blanc et al. 2004 Solar System Magnetospheres.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/exoplanets-es.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Katharina Lodders, Bruce Fegley-The Planetary S.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Ciencias_Planetarias_P1_Revisado.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Lucy-Ann McFadden Editor, Paul Weissman Editor,.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Physics-of-the-Earth-Frank-D.-Stacey-Paul-M.-Davis.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Destiny or Chance Revisited_ Planets and their .pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/An Introduction to Modern Astrophysics by Bradley W. Carroll, Dale A. Ostlie (z-lib.org).pdf

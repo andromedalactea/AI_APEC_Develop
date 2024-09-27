@@ -6,3 +6,4 @@ requests
 pymongo
 langchain_openai
 langchain_community
+langchain-chroma
