@@ -84,12 +84,12 @@ async def get_chat_completions(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    from pyngrok import ngrok
-    # Running in 8000 port
-    # Persinalized domain
-    domain = "sex.ngrok.app"  
+    # from pyngrok import ngrok
+    # # Running in 8000 port
+    # # Persinalized domain
+    # domain = "sex.ngrok.app"  
 
-    # Configure ngrok with the port on which Flask is running
-    ngrok_tunnel = ngrok.connect(8000, domain=domain)
-    print('NGROK Tunnel URL:', ngrok_tunnel.public_url)
+    # # Configure ngrok with the port on which Flask is running
+    # ngrok_tunnel = ngrok.connect(8000, domain=domain)
+    # print('NGROK Tunnel URL:', ngrok_tunnel.public_url)
     uvicorn.run(app, host="0.0.0.0", port=8000)
