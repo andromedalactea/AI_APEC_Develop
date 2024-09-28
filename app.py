@@ -37,7 +37,6 @@ response_data = {
 @app.get("/v1/models")
 async def get_models():
 
-
     # Initial template for the response
     response_data = {
         "data": [],

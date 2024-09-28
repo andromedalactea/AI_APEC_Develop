@@ -36,7 +36,7 @@ def extract_openai_models() -> list:
             id_model = model.get('id', '')
             if 'gpt' in id_model:
                 # Add model ID to the filtered list if 'gpt' is found
-                filter_models.append(id_model + "_APEC")
+                filter_models.append(id_model + "& APEC")
 
         # Return the list of filtered model IDs
         return filter_models

@@ -5,7 +5,9 @@ import json
 # Local imports from the same directory
 from scripts.extract_context_from_vs import extract_context_from_vector_search
 from scripts.image_to_base_64 import image_to_base64_markdown
-from scripts.auxiliar_functions import sources_to_md
+from scripts.auxiliar_functions import sources_to_md, replace_sources
+from prompts.prompts import source_citation
+
 # Import Third-Party Libraries
 from fastapi.responses import JSONResponse, StreamingResponse
 from openai import OpenAI, AsyncOpenAI
@@ -20,7 +22,7 @@ async def generate_chat_response(data):
         client = OpenAI()
         # Generate response with OpenAI
         completion = client.chat.completions.create(
-                                                model=data.get("model", "gpt-4o").split("_")[0],
+                                                model=data.get("model", "gpt-4o").split("&")[0],
                                                 messages=data.get("messages", []),
                                                 stream=False,
                                                 max_tokens=data.get("max_tokens", 150),
@@ -57,14 +59,19 @@ async def generate_chat_responses_stream(data):
     try:
         # Extract the context for the model
         context, sources = extract_context_from_vector_search(str(data['messages'][-1]['content']))
+        
+        # Intsert the context and prompt in the messages
         data["messages"].insert(-1, {"role": "system", "content": f"This is the context regarding of the user query:\n{context}"})
+        data["messages"].insert(-1, {"role": "system", "content": source_citation})
+        
+        
         print(data["messages"])
         client = AsyncOpenAI()  # Use AsyncOpenAI for async handling
-        print(data.get("model", "gpt-4o").split("_")[0])
+        print(data.get("model", "gpt-4o").split("&")[0])
 
         # Generate response with OpenAI using async
         stream = await client.chat.completions.create(
-            model=data.get("model", "gpt-4o").split("_")[0],
+            model=data.get("model", "gpt-4o").split("&")[0],
             messages=data.get("messages", []),
             stream=True,
             max_tokens=data.get("max_tokens", 1000),
@@ -73,9 +80,23 @@ async def generate_chat_responses_stream(data):
         # Use async for to handle streaming
         # image_md = image_to_base64_markdown("/home/andromedalactea/freelance/AI_APEC_Develop/to_develop_purposes/ecuatorial.png", "Here is an image included in the Markdown text:")
         # print(image_md)
+        # URLS list
+        URLS = [f"https://www.petrowhiz.ai/pdfs/{source.replace('/mnt/apec-ai-feed/', '').replace(' ', '%20')}" for source, _ in sources]
+        message_content = ""
+        sources_used = []
         async for chunk in stream:
             if chunk.choices[0].delta.content is not None:
-                message_content = chunk.choices[0].delta.content
+                message_content += chunk.choices[0].delta.content
+
+                if message_content.count('{') != message_content.count('}') and '\n' not in message_content:
+                    continue
+
+                # Replace the placeholders with the corresponding sources
+                message_content, sources_used_ = replace_sources(message_content, URLS)
+                
+                # Extend the sources used
+                sources_used.extend(sources_used_)
+                print(message_content)
                 # message_content += "![Alt text](https://pngimg.com/uploads/lgbt/lgbt_PNG38.png)" # Append the image markdown to the message content
                 # Formato alineado con la API de OpenAI para respuestas en streaming
                 message = {
@@ -92,10 +113,15 @@ async def generate_chat_responses_stream(data):
                     }]
                 }
                 event = f"data: {json.dumps(message)}\n\n"
+
+                # Delete the message content
+                message_content = ""
                 yield event
 
         # Create the references in Markdown format
-        md_sources = sources_to_md(sources)
+        sources_used = list(sorted(set(sources_used)))
+        md_sources = sources_to_md(sources, sources_used)
+
         # Enviar el mensaje de finalización del streaming
         end_message = {
             "id": "chatcmpl-stream-end",
