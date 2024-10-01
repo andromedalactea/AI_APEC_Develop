@@ -12,8 +12,12 @@ def sources_to_md(sources: list, sources_used: list) -> str:
     Returns:
         str: A Markdown formatted string of sources.
     """
+
+    # Extract the domain
+    domain_docs = os.getenv("DOMAIN_DOCS")
+
     # Generate the URLs
-    URLS = [f"https://www.petrowhiz.ai/pdfs/{source.replace('/mnt/apec-ai-feed/', '').replace(' ', '%20')}" for source, _ in sources]
+    URLS = [f"{domain_docs}/pdfs/{source.replace('/mnt/apec-ai-feed/', '').replace(' ', '%20')}" for source, _ in sources]
 
     # Filter sources based on sources_used indices
     filtered_sources = [(sources[index - 1], URLS[index - 1]) for index in sources_used if 0 < index <= len(sources)]
