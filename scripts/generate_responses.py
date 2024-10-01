@@ -1,4 +1,5 @@
 # Import Standard Libraries
+import os
 import asyncio
 import json
 
@@ -80,8 +81,12 @@ async def generate_chat_responses_stream(data):
         # Use async for to handle streaming
         # image_md = image_to_base64_markdown("/home/andromedalactea/freelance/AI_APEC_Develop/to_develop_purposes/ecuatorial.png", "Here is an image included in the Markdown text:")
         # print(image_md)
-        # URLS list
-        URLS = [f"https://www.petrowhiz.ai/pdfs/{source.replace('/mnt/apec-ai-feed/', '').replace(' ', '%20')}" for source, _ in sources]
+        # Extract the domain
+        domain_docs = os.getenv("DOMAIN_DOCS")
+
+        # Generate the URLs
+        URLS = [f"{domain_docs}/pdfs/{source.replace('/mnt/apec-ai-feed/', '').replace(' ', '%20')}" for source, _ in sources]
+
         message_content = ""
         sources_used = []
         async for chunk in stream:
