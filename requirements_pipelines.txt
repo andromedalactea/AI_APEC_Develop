@@ -15,3 +15,9 @@ pymongo
 langchain_mongodb
 pypdf
 langchain-openai
+pypandoc
+docx2pdf 
+langchain-community
+unstructured
+openpyxl
+pandas

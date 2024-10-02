@@ -2,6 +2,7 @@
 /ignore_this
 /data
 /to_develop_purposes
+nohup.out
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

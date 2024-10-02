@@ -12,3 +12,147 @@
 /home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Physics-of-the-Earth-Frank-D.-Stacey-Paul-M.-Davis.pdf
 /home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Destiny or Chance Revisited_ Planets and their .pdf
 /home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/An Introduction to Modern Astrophysics by Bradley W. Carroll, Dale A. Ostlie (z-lib.org).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/MNSP/Cybera/Chevron Mako/Indoor_Debit_EMV_Installation_Guide/Installation Guid/Chevron Indoor Debit EMV Installation Checklist for VASC.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/MNSP/Cybera/Chevron Mako/Indoor_Debit_EMV_Installation_Guide/Installation Guid/Chevron Steps for EMV Initialization.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/MNSP/Cybera/Chevron Mako/Indoor_Debit_EMV_Installation_Guide/Installation Guid/Chevron Indoor Debit EMV Installation Checklist for Retailers.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Verifone/Datalogic Scan sheets/Wayne Nucleus - Gryphon GD4400 1013 Firmware.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/PINPADS/CHECKING OS VERSION MX915.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/PINPADS/VRK Troubleshooting Cheat Sheet.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/PINPADS/INJECTIONS/VRK Troubleshooting Cheat Sheet.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/Crind Limits 5-10-12.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/Valero Letter_Approved 8.21.19.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/VALERO OLD INFO/Commander_Ruby 2 CI Site Controller_Associate Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/VALERO OLD INFO/Commander_Ruby 2 CI Site Controller_Manager Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/EPS/EPSPAK 300XX V910 Cannot Process Credit Debit - VASC.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/EPS/EPS20303/EPSPak 20303 Loyalty config settings.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/MOUNTAIN EXPRESS/593_Simmons_site profile.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX/MAKO Chevron 3 0_installer manual.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/Commander showing EC1.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/Terminal Full - VASC Edition.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/NAXML DEAL SETUP.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/DCR Poll Error - VASC Edition 2252014.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/CLEARRESERVED ON A RUBYCI.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/EPSPAK 300XX V910 Cannot Process Credit Debit - VASC.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/Welcome to Verifone Chat Support COMMIT 5414 FIVE FORKS TRICKUM.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/Testinig a Topaz Cash Drawer - VASC Instructions.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/LIFT RETAIL/Hess Cashier Screen differences for LIFT.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/FIREWALL PAYSAFE MAKO/CONTROLSCAN/ControlScan PaySafe UTM-PCI Solutions 2995 NORTH DRUID HILLS.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/FIREWALL PAYSAFE MAKO/CONTROLSCAN/ControlScan PaySafe UTM-Primary Cellular Service-PCI Solutions Sales Sheet 11-30-17.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/FIREWALL PAYSAFE MAKO/CONTROLSCAN/ControlScan PaySafe UTM-PCI Solutions Customer Generic Signup Form 11-30-17.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/FIREWALL PAYSAFE MAKO/CONTROLSCAN/ControlScan PaySafe UTM Firewall - Signup Form 1-30-19.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/FIREWALL PAYSAFE MAKO/MAKO/Mako Sign Up Form (2)-.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SUNOCO/PAPERWORK COMMANDER SUNOCO/OLD PAPERWORK/Commander_Ruby 2 CI Site Controller_Associate Training Checklist (002).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SUNOCO/PAPERWORK COMMANDER SUNOCO/OLD PAPERWORK/Commander_Ruby 2 CI Site Controller_Manager Training Checklist (002).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/Shell Cybera Cancellation Agreement (003).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/Best_Practices_-_Product_Codes_-_01.2015.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/SITE INFORMATION/Welcome to Verifone Chat Support COMMIT 5414 FIVE FORKS TRICKUM.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/WALLACE OIL SHELL/Shell Cancellation Agreement 20 Pat Mell.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/COMMANDERSHELLPAPERWORK/SHELL_Commander_Ruby 2 CI Site Controller_Manager Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/COMMANDERSHELLPAPERWORK/SHELL_Commander_Ruby 2 CI Site Controller_Associate Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/COMMANDERSHELLPAPERWORK/New folder/EPS_Full_Image.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/COMMANDERSHELLPAPERWORK/New folder/IF_EPS_FAILS_TO_BOOT_TO_USB.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/VANTAGE/WINCOR EPS RETURN REQUEST PREMIER #1.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/VANTAGE/Wincor EPS Return Request THOMPSON KENNY.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/VANTAGE/Wincor EPS Return Request THOMPSON KENNY 6400 PIB.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER SHELL/VANTAGE/Wincor EPS Return Request WALLACE.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/HELPDESK/OLD BLANK SHELL VeriFone ASM Enrollment Form.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/HELPDESK/VERIFONE PHONE NUMBERS BY BRAND.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/HELPDESK/ASM/VeriFone Software License Agreement -  January 2011 - FINAL.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/DCR KEYPADS/DCR Poll Error - VASC Edition 2252014.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER/Commander Updated Fuel Detail View.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER/Best Practices - Product Codes - 01.2015.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CVX/OLD INFO/Commander_Ruby 2 CI Site Controller_Associate Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CVX/OLD INFO/Commander_Ruby 2 CI Site Controller_Manager Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CVX/CVX COMMANDER PAPERWORK/CVX PAPERWORK/Chevron Indoor Debit EMV Installation Checklist for VASC.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CVX/MAKO/MAKO Chevron 3 0_installer manual.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CVX/MAKO/Chevron 3 0_installer manual MAKO.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/EMV/Chevron Steps for EMV Initialization.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/EMV/SHELL OUTDOOR EMV IMPLEMTATION (003).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/PASSWORDS/SECURE.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/General_Upgrade_Instructions_for_CVXPAK_v7.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/CVX_Specific/Chevron_Loyalty_Config_SMS.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/CVX_Specific/Chevron_V910_IP_Config_Tool_Instuctions.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/CVX_Specific/Mx800_ViperPay_Install_for_CVXPAK_v7.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/CVX_Specific/PDR_Install_Instuctions.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/EPS_General/Viper_OS_2.13_Upgrade.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/EPS_General/V950_Reimage_Instructions.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/Mobile Pay Troubleshooting.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/COMMANDERXOMPAPERWORK/VERIFONE PAPERWORK/Exxon Mobil_Commander Site Controller_Manager Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/COMMANDERXOMPAPERWORK/VERIFONE PAPERWORK/Exxon Mobil_Commander Site Controller_Associate Training Checklist.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/EXXON OLD HANDOUTS/Loyalty Plenti Only Script 120215.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/EXXON OLD HANDOUTS/Loyalty Mobile Payment Script.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/CITGO Verifone Helpdesk_ASM Service Enrollment Form_rev 081015  2052 CANDLER ROAD JCOIL.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/2019.05.21-OUTDOOR EMV SITE SURVEY 5225 CAMPBELLTON.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/MIKE CHWALA/CITGO Verifone Helpdesk_ASM Service Enrollment Form_rev 081015  305 PANTHER BROOK LANE JCOIL.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO COMMANDER PAPERWORK/OLD CITGO INFO/Commander_Ruby 2 CI Site Controller_Associate Training Checklist (002).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO COMMANDER PAPERWORK/OLD CITGO INFO/Commander_Ruby 2 CI Site Controller_Manager Training Checklist (002).pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/BP PLAYBOOK CURRENT/Helpdesk Labels/BP HD Labels.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/BP PLAYBOOK CURRENT/Training Guides/Ruby2/Ruby2 General Navigation.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/BP PLAYBOOK OLD/WoR/Setup ampm & ARCO Office PC 06292016.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/SITE INFORMATION BP/BP Verifone Installation Commander Checklist 6360 ROSWELL ROAD.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/SITE INFORMATION BP/BP Verifone Installation Commander Checklist rev 1-26-17 41 DODD STREET.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/BP COMMANDER PAPERWORK/MANAGED PW BP/BP Verifone Installation Commander Checklist rev 1-26-17.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/BP COMMANDER PAPERWORK/MANAGED PW BP/NEEDS EDITING/Verifone Manager Training Checklist-8-8-16.pdf.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER BP/BP COMMANDER PAPERWORK/MANAGED PW BP/NEEDS EDITING/Commander_Topaz XL_Ruby 2 CI Site Controller_Associate Training Checklist rev 12-16.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/files_size.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/error_files.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/processed_files.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/MNSP/Cybera/Chevron Mako/Indoor_Debit_EMV_Installation_Guide/Installation Guid/Steps to check OS version on an MX900 Series Pinpad.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/PINPADS/MX900/Steps to check OS version on an MX900 Series Pinpad.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CONOCO/COPPAK V920 Installation notes1[1].pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX/CVXPAK V6 Installation and Setup Guide.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/ERRORMESSAGES/The Gemcom Extended Error Code.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/FIREWALL PAYSAFE MAKO/MAKO/Mako Networks-Sign-Up Form V4-Verifone-Commander.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER MARATHON/MARATHON PAPERWORK/DTCIGv4_4 DROP TANK WITH CLAPTON INSTALL ON COMMANDER.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/HELPDESK/Valero Verifone Software Maintenance Order Form SHARPSBURG.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/HELPDESK/Valero Verifone Software Maintenance Order Form 7730 McGinnis Ferry.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/HELPDESK/Valero Verifone Software Maintenance Order Form 120117.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/HELPDESK/CITGO Verifone Helpdesk_ASM Service Enrollment Form_rev 081015.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER/COMMANDER USER REFERENCE/Commander and Ruby 2 Quick Reference Guide.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER/COMMANDER USER REFERENCE/Commander and Topaz Quick Reference Guide.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER/COMMANDER USER REFERENCE/RubyCI and Ruby 2 Quick Reference Guide.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/CVX_Specific/CVXPAK_AutoUpgrade_Procedure.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/EPS_General/General_AutoUpgrade_Procedure.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/CVX70009/EPS_General/Initial_EPS_Site_Upgrade_and_Setup.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/EXXON OLD HANDOUTS/XOM BW-VASC Remediation Notice rev5-6.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/EXXON OLD HANDOUTS/OLD PlentiMobilePayment  for 20101 and down.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER XOM/EXXON OLD HANDOUTS/OLD PlentiMobilePayment 2 for 20104 and up-v2.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/Verifone Helpdesk_ASM Service Enrollment Form_rev 081015.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/Verifone Helpdesk_ASM Service Enrollment Form_rev 081015 28 KILLIAN HILL.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/2877 Jonson Ferry CITGO Site Survey.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/8779 DUNWOODY PL ASM ENROLLMENT.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/CITGO Verifone Helpdesk_ASM Service Enrollment Form_rev 081015 526 FLINT RIVER.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO SITE SURVEYS AND CUST INFO/CITGO Verifone Helpdesk_ASM Service Enrollment Form_rev 081015 228 NORTH BROAD STREET.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Test/COMMANDER CITGO/CITGO PAYMEDIA/CITGO PAYMEDIA PAPERWORK/PAYMEDIA Pre and Post-Installation Check List - 3 25 2014.pdf.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/planet_accretion.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/DebrisDiskLecture.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/RockyPlanetsFormation.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/PlanetFormation.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Verifone/Topaz/Keyboard Layout/BLANK TOPAZ.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Verifone/Topaz/Keyboard Layout/BASICTOPAZ.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Verifone/Topaz/Keyboard Layout/BASICTOPAZ CUTOUT NO CW BEST.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Verifone/docs/configuration/KBD Template Ru-Top.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/INVOICES UNPAID VERIFONE rev2.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/SCHEDAPRILREV2.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/INVOICES UNPAID VERIFONE.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/CURRENT INVENTORY backup 08012019.xlsb.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/APEC Quote Form-Mike Henning.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/CURRENT INVENTORY REV2.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/oldINVENTORY REV1.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/LOOSEITEMS/CURRENT INVENTORY REV3.xlsb.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/Pinpad Types and Troubleshooting.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/KSN NUMBERS.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/KSN DEBIT/PETRO PINPADS Jan 15 2015.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/KSN DEBIT/Debit Keys 11062017.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/KSN DEBIT/WAYNEKeypad, DSM, MSM Matrix.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/KSN DEBIT/DEBIT TYPE PETRO PINPADS Jan 15 2015.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/KSN DEBIT/ENCRYPTIONKEYS.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/MX900/MX9 PASSWORDS.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/PINPADS/MX900/MX915 VIPERPAY/ViperPAY_Application_Table_11.19.2019.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/COMMANDER VALERO INSTALLS.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/TNS Link Order.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/TNS Link order form 042518.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/Thompson Energy Site List 12182017 (002).xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/VALERO OLD INFO/VALEROCHECKLIST.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/VALERO OLD INFO/Copy of COMMANDER_RUBYCI  INSTALL CHECKLIST 8_20.xlsx
+/home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/CONOCO/SAWHITE.xls
