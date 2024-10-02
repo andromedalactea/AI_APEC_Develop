@@ -40,7 +40,8 @@ def extract_context_from_vector_search(query: str = '', k: int = 4):
     string = " ".join(map(str, filter_list))
 
     # Now return sources info:
-    sources = [(data.metadata['source'], data.metadata['page']) for data, _ in results]
+    sources = [(data.metadata.get('source', 'Unknown Source'), data.metadata.get('page')) for data, _ in results]
+
 
     return string, sources
 

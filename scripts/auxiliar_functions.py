@@ -23,9 +23,19 @@ def sources_to_md(sources: list, sources_used: list) -> str:
     filtered_sources = [(sources[index - 1], URLS[index - 1]) for index in sources_used if 0 < index <= len(sources)]
     
     # Create references based on the filtered sources
-    references = [f"({sources_used[i]}) {source.split('/')[-1].replace('.pdf', '')}, Page {page}" 
-                  for i, ((source, page), _) in enumerate(filtered_sources)]
-    
+    # Crear referencias basadas en las fuentes filtradas, manejando el caso donde la página podría no estar disponible
+    references = []
+
+    for i, (source_info, _) in enumerate(filtered_sources):
+        source = source_info[0]
+        page = source_info[1] if len(source_info) > 1 else None  # Verificar si la página existe
+
+        # Construir la referencia y agregar el número de página solo si existe
+        reference = f"({sources_used[i]}) {source.split('/')[-1].replace('.pdf', '')}"
+        if page:  # Solo añadir ", Page {page}" si el valor de `page` no es None ni vacío
+            reference += f", Page {page}"
+        
+        references.append(reference)
     # Create the Markdown formatted string using only the filtered sources
     md_sources = "\n".join([f"- [{reference}]({url})" for reference, (_, url) in zip(references, filtered_sources)])
     

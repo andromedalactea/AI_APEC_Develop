@@ -7,7 +7,7 @@ import json
 from scripts.extract_context_from_vs import extract_context_from_vector_search
 from scripts.image_to_base_64 import image_to_base64_markdown
 from scripts.auxiliar_functions import sources_to_md, replace_sources
-from prompts.prompts import source_citation
+from prompts.prompts import system_prompt
 
 # Import Third-Party Libraries
 from fastapi.responses import JSONResponse, StreamingResponse
@@ -17,7 +17,6 @@ from dotenv import load_dotenv
 # Load environment variables from the .env file
 load_dotenv(override=True)
 
-# Import 
 async def generate_chat_response(data):
     try:
         client = OpenAI()
@@ -63,7 +62,7 @@ async def generate_chat_responses_stream(data):
         
         # Intsert the context and prompt in the messages
         data["messages"].insert(-1, {"role": "system", "content": f"This is the context regarding of the user query:\n{context}"})
-        data["messages"].insert(-1, {"role": "system", "content": source_citation})
+        data["messages"].insert(-1, {"role": "system", "content": system_prompt})
         
         
         print(data["messages"])

@@ -21,3 +21,4 @@ langchain-community
 unstructured
 openpyxl
 pandas
+xlrd
