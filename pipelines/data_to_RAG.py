@@ -247,7 +247,7 @@ class ProcessData:
 
 
 # Define the base path to process the data
-base_path = '../data/APEC_ChromaDB'
+base_path = '/mnt/apec-ai-feed/'
 
 # Create an Object to process the data
 process_data = ProcessData()
