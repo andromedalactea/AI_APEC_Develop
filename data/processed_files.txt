@@ -156,3 +156,6 @@
 /home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/VALERO OLD INFO/VALEROCHECKLIST.xlsx
 /home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/COMMANDER VALERO/COMMANDER VALERO PAPERWORK/VALERO OLD INFO/Copy of COMMANDER_RUBYCI  INSTALL CHECKLIST 8_20.xlsx
 /home/andromedalactea/freelance/AI_APEC_Develop/data/tabular/Test/CONOCO/SAWHITE.xls
+/home/andromedalactea/freelance/AI_APEC_Develop/data/pdf/DTCIGv4_4 DROP TANK WITH CLAPTON INSTALL ON COMMANDER.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/pdf/577013-786.pdf/home/andromedalactea/freelance/AI_APEC_Develop/data/pdf/577013-764.pdf
+/home/andromedalactea/freelance/AI_APEC_Develop/data/pdf/577013-764.pdf

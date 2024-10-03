@@ -26,6 +26,7 @@ async def generate_chat_response(data):
                                                 messages=data.get("messages", []),
                                                 stream=False,
                                                 max_tokens=data.get("max_tokens", 150),
+                                                temperature=data.get("temperature", 0.1),
                                                 )
 
         response = completion.choices[0].message.content
@@ -61,7 +62,7 @@ async def generate_chat_responses_stream(data):
         user_messages = extract_user_messages(data['messages'], 4)
         
         # Extract the context for the model
-        context, sources = extract_context_from_vector_search(user_messages)
+        context, sources = extract_context_from_vector_search(user_messages, 5)
         
         # Intsert the context and prompt in the messages
         data["messages"].insert(-1, {"role": "system", "content": f"This is the context regarding of the user query:\n{context}"})
@@ -78,6 +79,7 @@ async def generate_chat_responses_stream(data):
             messages=data.get("messages", []),
             stream=True,
             max_tokens=data.get("max_tokens", 1000),
+            temperature=data.get("temperature", 0.1),
         )
 
         # Use async for to handle streaming

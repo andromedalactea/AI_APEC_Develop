@@ -23,6 +23,8 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_mongodb.vectorstores import MongoDBAtlasVectorSearch
 from pymongo import MongoClient
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
 
 # Load the environment variables
 load_dotenv(override=True)
@@ -32,9 +34,9 @@ def absolute_path(relative_path):
 
 class ProcessData:
     def __init__(self,
-                 data_directory: str =  "../data/APEC_ChromaDB",
-                 history_file: str = "../data/processed_files.txt",
-                 error_file: str = "../data/error_files.txt",
+                 data_directory: str =  "../data/APEC_ChromaDB_v2",
+                 history_file: str = "../data/processed_files_v2.txt",
+                 error_file: str = "../data/error_files_v2.txt",
                  embedding_model: str = "text-embedding-3-small"):
         
         # List to store the documents temporarily
@@ -58,8 +60,8 @@ class ProcessData:
         # Define the initial text splitter
         self.text_splitter = RecursiveCharacterTextSplitter(
                                                             # Set a really small chunk size, just to show.
-                                                            chunk_size=100,
-                                                            chunk_overlap=20,
+                                                            chunk_size=1200,
+                                                            chunk_overlap=400,
                                                             length_function=len,
                                                             is_separator_regex=False,
                                                         )
@@ -87,10 +89,97 @@ class ProcessData:
         except FileNotFoundError:
             return set()
         
+    def remove_repeated_phrases(self, text, n_words=8):
+        """
+        Esta función divide el texto en bloques de n palabras y elimina 
+        aquellos bloques que se repiten consecutivamente, ya estén pegados o no.
+        
+        :param text: Texto procesado hasta este punto.
+        :param n_words: Definir el tamaño de bloques de palabras a comparar (por ejemplo, 8 palabras por bloque).
+        :return: Texto con bloques repetidos eliminados.
+        """
+        # Dividir en palabras
+        words = text.split()
+
+        # Procesar por bloques de n palabras consecutivas
+        result = []
+        i = 0
+        while i < len(words):
+            # Tomamos un bloque de n palabras
+            block = ' '.join(words[i:i + n_words])
+            
+            # Solo añadimos el bloque si no es igual al último añadido
+            if not result or block != result[-1]:
+                result.append(block)
+
+            i += n_words  # Movernos al siguiente bloque
+            
+        # Unir bloques de nuevo en una cadena
+        return ' '.join(result)    
+
+    def preprocess_page_content(self, text):
+        """
+        Performs preprocessing on the text to remove irrelevant characters/services and normalize the text.
+        It removes strange or repetitive characters and normalizes excess whitespace.
+        """
+        # Convert to lowercase
+        processed_text = text.lower()
+
+        # Step 1: Remove sequences starting with "/" and with "\"
+        processed_text = re.sub(r'/\S+', ' ', processed_text)  # Remove sequences like "/..."
+        processed_text = re.sub(r'\\\S+', ' ', processed_text)  # Remove sequences like "\..."
+
+        # Step 2: Remove placeholders with underscores like "fp__&__"
+        processed_text = re.sub(r'\b\w+__&__\b', ' ', processed_text)
+
+        # Step 3: Remove lines with more than three consecutive hyphens (---)
+        processed_text = re.sub(r'-{3,}', ' ', processed_text)
+
+        # Step 4: Remove non-ASCII characters (only retain printable ASCII)
+        processed_text = re.sub(r'[^\x20-\x7E]', ' ', processed_text)
+
+        # Step 5: Remove emojis and other rare alphanumeric characters
+        # We use a regular expression to remove emojis (common Unicode emoji ranges) and other unusual characters.
+        emoji_pattern = re.compile("["
+            u"\U0001F600-\U0001F64F"  # Emoticons
+            u"\U0001F300-\U0001F5FF"  # Symbols & pictographs
+            u"\U0001F680-\U0001F6FF"  # Transport and map symbols
+            u"\U0001F1E0-\U0001F1FF"  # Flags (iOS)
+            u"\u2600-\u26FF"          # Miscellaneous symbols
+            u"\u2700-\u27BF"          # Dingbats
+            "]+", flags=re.UNICODE)
+        processed_text = emoji_pattern.sub(r' ', processed_text)  # Remove emojis
+
+        # processed_text = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", processed_text)  # Optionally remove IP addresses
+        processed_text = re.sub(r"\d{2,}\b", " ", processed_text)  # Remove larger numbers likely not semantically important
+
+        # Remove excessive punctuation (replace sequences of dots, commas, etc. with a single space)
+        processed_text = re.sub(r"[.,:;!]+", " ", processed_text)
+
+        # Remove standalone numbers that add little semantic value
+        processed_text = re.sub(r'\b\d+\b', ' ', processed_text)
+
+        # Step 6: Remove generic placeholders and example values (e.g., xx, xxx, YYYY, mm-dd, etc.)
+        processed_text = re.sub(r'\b(?:xx|xxx|xxxx|mm-dd(?:-yy)?|yyyy)\b', ' ', processed_text)
+
+        # Step 7: Remove excessive whitespace (reduce multiple spaces to a single space)
+        processed_text = re.sub(r'\s+', ' ', processed_text).strip()
+
+        # Step 8: Remove consecutive repeated words
+        words = processed_text.split()
+        processed_text = ' '.join([words[i] for i in range(len(words)) if i == 0 or words[i] != words[i-1]])
+
+        # Step 9: Process repetitive phrases and remove them
+        processed_text = self.remove_repeated_phrases(processed_text)
+
+        return processed_text
+
+
     def filter_documents(self, documents: list):
         """
-        Filters the documents based on the length and the number of words
+        Filters the documents based on the length and cleans the content to remove irrelevant characters.
         """
+
         filtered_documents = []
 
         def contains_only_numbers_and_symbols(text):
@@ -98,14 +187,21 @@ class ProcessData:
             return not any(char.isalpha() for char in text)
 
         for doc in documents:
-            # Extract the page content
-            page_content = doc.page_content
+            # Preprocess the page content before doing any checks
+            page_content = self.preprocess_page_content(doc.page_content)
 
-            if (contains_only_numbers_and_symbols(page_content) or 
-                len(page_content) < 25):
+            if len(page_content) < 25:
+                # Skip fragments that are too short
                 continue
-            else:
-                filtered_documents.append(doc)
+            elif contains_only_numbers_and_symbols(page_content):
+                # Skip fragments that are just symbols and numbers
+                continue
+
+            # Update the document with the newly preprocessed page content
+            doc.page_content = page_content
+
+            # Append filtered and preprocessed document
+            filtered_documents.append(doc)
 
         return filtered_documents
 
@@ -144,7 +240,7 @@ class ProcessData:
 
             # Add metadata to the documents
             documents_pdf = self.add_metadata(documents_pdf, type='text')
-
+            print(documents_pdf)
             if not documents_pdf:
                 return False
             
@@ -255,7 +351,7 @@ class ProcessData:
 
 
 # Define the base path to process the data
-base_path = '/mnt/apec-ai-feed/'
+base_path = '../data/pdf'
 
 # Create an Object to process the data
 process_data = ProcessData()

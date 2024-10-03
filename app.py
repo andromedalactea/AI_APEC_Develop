@@ -43,7 +43,8 @@ async def get_models():
         "object": "list"
     }
     # Extract the available models for openai
-    available_models = extract_openai_models()
+    # available_models = extract_openai_models()
+    available_models = ['chatgpt-4o-latest& APEC', 'gpt-4o-mini& APE', 'o1-preview& APEC']
     if available_models:
         for model in available_models:
             response_data["data"].append({
