@@ -247,7 +247,7 @@ class ProcessData:
 
             # Add metadata to the documents
             documents_pdf = self.add_metadata(documents_pdf, type='text')
-            print(documents_pdf)
+            # print(documents_pdf)
             if not documents_pdf:
                 return False
             
