@@ -159,8 +159,14 @@ class ProcessData:
         # Remove standalone numbers that add little semantic value
         processed_text = re.sub(r'\b\d+\b', ' ', processed_text)
 
+        # Step 9: Remove all single characters except numbers (remove chars like 'a', '-', '%')
+        processed_text = re.sub(r'\b[^0-9\s]\b', ' ', processed_text)
+
         # Step 6: Remove generic placeholders and example values (e.g., xx, xxx, YYYY, mm-dd, etc.)
         processed_text = re.sub(r'\b(?:xx|xxx|xxxx|mm-dd(?:-yy)?|yyyy)\b', ' ', processed_text)
+
+        # \b - word boundary, (?=[\w]*\d) - ensures there's at least one digit, (?=[\w]*[a-zA-Z]) ensures there's at least one letter
+        processed_text = re.sub(r'\b(?=[\w]*\d)(?=[\w]*[a-zA-Z])\w+\b', ' ', processed_text)
 
         # Step 7: Remove excessive whitespace (reduce multiple spaces to a single space)
         processed_text = re.sub(r'\s+', ' ', processed_text).strip()
@@ -209,8 +215,9 @@ class ProcessData:
         """
         Adds metadata to the documents
         """
-        for doc in documents:
+        for index, doc in enumerate(documents):
             doc.metadata['type_data'] = type
+            doc.metadata['index'] = index
 
         return documents
     
@@ -351,7 +358,7 @@ class ProcessData:
 
 
 # Define the base path to process the data
-base_path = '/mnt/apec-ai-feed'
+base_path = '../data/pdf/'
 
 # Create an Object to process the data
 process_data = ProcessData()
