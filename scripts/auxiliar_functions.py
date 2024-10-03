@@ -33,7 +33,7 @@ def sources_to_md(sources: list, sources_used: list) -> str:
         # Construir la referencia y agregar el número de página solo si existe
         reference = f"({sources_used[i]}) {source.split('/')[-1].replace('.pdf', '')}"
         if page:  # Solo añadir ", Page {page}" si el valor de `page` no es None ni vacío
-            reference += f", Page {page}"
+            reference += f", Page {int(page) + 1}"
         
         references.append(reference)
     # Create the Markdown formatted string using only the filtered sources
