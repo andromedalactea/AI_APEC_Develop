@@ -1,6 +1,7 @@
 # Python Imports
 import os
 import re
+import gc
 
 # Third party imports
 from dotenv import load_dotenv
@@ -162,6 +163,10 @@ class ProcessData:
             with open(self.history_file, 'a') as file:
                 file.write(filepath + "\n")
 
+            # Clean the memory
+            del loader, data
+            gc.collect()
+
             return 'Success'
         except Exception as e:
             print(f"Error processing file {filepath}: {e}")
@@ -224,6 +229,9 @@ class ProcessData:
             with open(self.history_file, 'a') as file:
                 file.write(filepath + "\n")
 
+            # Clean the memory
+            del df
+            gc.collect()
             return 'Success'
         
         except Exception as e:
