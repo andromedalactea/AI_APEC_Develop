@@ -27,14 +27,14 @@ def extract_openai_models() -> list:
     if response.status_code == 200:
         # Extract the list of models from the response
         list_all_models = list(response.json().get('data', []))
-        
+        print(response.json())
         # List to store filtered models
         filter_models = []
 
         # Iterate over all models to filter those containing 'gpt' in their ID
         for model in list_all_models:
             id_model = model.get('id', '')
-            if 'gpt' in id_model:
+            if 'gpt' in id_model or 'o1' in id_model:
                 # Add model ID to the filtered list if 'gpt' is found
                 filter_models.append(id_model + "& APEC")
 

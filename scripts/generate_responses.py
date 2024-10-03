@@ -6,7 +6,7 @@ import json
 # Local imports from the same directory
 from scripts.extract_context_from_vs import extract_context_from_vector_search
 from scripts.image_to_base_64 import image_to_base64_markdown
-from scripts.auxiliar_functions import sources_to_md, replace_sources
+from scripts.auxiliar_functions import sources_to_md, replace_sources, extract_user_messages
 from prompts.prompts import system_prompt
 
 # Import Third-Party Libraries
@@ -57,8 +57,11 @@ async def generate_chat_response(data):
 
 async def generate_chat_responses_stream(data):
     try:
+        # User context to vector search
+        user_messages = extract_user_messages(data['messages'], 4)
+        
         # Extract the context for the model
-        context, sources = extract_context_from_vector_search(str(data['messages'][-1]['content']))
+        context, sources = extract_context_from_vector_search(user_messages)
         
         # Intsert the context and prompt in the messages
         data["messages"].insert(-1, {"role": "system", "content": f"This is the context regarding of the user query:\n{context}"})

@@ -79,6 +79,19 @@ def replace_sources(text: str, urls: list) -> tuple:
     
     return replaced_text, found_numbers
 
+def extract_user_messages(messages: list, n: int) -> str:
+    # Filtrar los mensajes cuyo 'role' sea 'user'
+    user_messages = [msg['content'] for msg in messages if msg['role'] == 'user']
+    
+    # Tomar sólo los primeros n mensajes si existen suficientes o menos si no hay tantos
+    extracted_messages = user_messages[:n]
+    
+    # Unir los mensajes en un único string con un separador (opcional, puedes ajustarlo a lo que necesites)
+    result = "\n".join(extracted_messages)  # Puedes cambiar "\n" a cualquier delimitador que prefieras
+
+    return result
+
+
 # Example usage
 if __name__ == "__main__":
     sources = ["Source 1 text", "Source 2 text", "Jupiter"]
