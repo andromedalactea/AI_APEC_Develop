@@ -358,7 +358,7 @@ class ProcessData:
 
 
 # Define the base path to process the data
-base_path = '/mnt/apec-ai-feed/'
+base_path = '../data/'
 
 # Create an Object to process the data
 process_data = ProcessData()
@@ -428,7 +428,7 @@ for dirpath, dirnames, filenames in os.walk(base_path):
             output_pdf_name = os.path.splitext(filename)[0] + '.pdf'
             output_pdf_path = os.path.join(dirpath, output_pdf_name)
 
-            # Convert only if the PDF file doesn't already exist
+            # Convert only if the PDF file doesn't already exist or isn't processed
             if not os.path.exists(output_pdf_path):
                 # 1. Try with Pandoc
                 conversion_success = convert_to_pdf_pandoc(original_file_path, output_pdf_path)
@@ -452,5 +452,14 @@ for dirpath, dirnames, filenames in os.walk(base_path):
                     # If all conversion attempts failed, log the file
                     print(f"All conversion methods failed for {original_file_path}. Logging error.")
                     log_failed_file(original_file_path)
+                    
+            elif output_pdf_path not in process_data.processed_files:
+                # If the PDF file exists but wasn't processed, process it
+                result = process_data.process_pdf(output_pdf_path)
+
+                if result == 'Success':
+                    with open(process_data.history_file, 'r') as file:
+                        number_files = len(file.read().splitlines())
+                        print("Number of files processed: ", number_files)
             else:
                 print(f"{output_pdf_name} already exists. Skipping conversion.")
