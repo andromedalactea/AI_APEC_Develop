@@ -358,7 +358,7 @@ class ProcessData:
 
 
 # Define the base path to process the data
-base_path = '../data/'
+base_path = os.getenv('BASE_PATH_PIPELINE')
 
 # Create an Object to process the data
 process_data = ProcessData()
@@ -452,7 +452,7 @@ for dirpath, dirnames, filenames in os.walk(base_path):
                     # If all conversion attempts failed, log the file
                     print(f"All conversion methods failed for {original_file_path}. Logging error.")
                     log_failed_file(original_file_path)
-                    
+
             elif output_pdf_path not in process_data.processed_files:
                 # If the PDF file exists but wasn't processed, process it
                 result = process_data.process_pdf(output_pdf_path)
