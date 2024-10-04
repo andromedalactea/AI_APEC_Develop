@@ -89,7 +89,7 @@ def extract_user_messages(messages: list, n: int) -> str:
     # Unir los mensajes en un único string con un separador (opcional, puedes ajustarlo a lo que necesites)
     result = "\n".join(extracted_messages)  # Puedes cambiar "\n" a cualquier delimitador que prefieras
 
-    return result
+    return result.lower()
 
 
 # Example usage
