@@ -7,3 +7,5 @@ pymongo
 langchain_openai
 langchain_community
 langchain-chroma
+pytesseract 
+pdf2image

@@ -59,15 +59,14 @@ async def generate_chat_response(data):
 async def generate_chat_responses_stream(data):
     try:
         # User context to vector search
-        user_messages = extract_user_messages(data['messages'], 4)
+        user_messages = extract_user_messages(data['messages'], 3)
         
         # Extract the context for the model
-        context, sources = extract_context_from_vector_search(user_messages, 5)
+        context, sources = extract_context_from_vector_search(user_messages, 3)
         
         # Intsert the context and prompt in the messages
         data["messages"].insert(-1, {"role": "system", "content": f"This is the context regarding of the user query:\n{context}"})
         data["messages"].insert(-1, {"role": "system", "content": system_prompt})
-        
         
         print(data["messages"])
         client = AsyncOpenAI()  # Use AsyncOpenAI for async handling
@@ -106,7 +105,7 @@ async def generate_chat_responses_stream(data):
                 # Extend the sources used
                 sources_used.extend(sources_used_)
                 print(message_content)
-                # message_content += "![Alt text](https://pngimg.com/uploads/lgbt/lgbt_PNG38.png)" # Append the image markdown to the message content
+
                 # Formato alineado con la API de OpenAI para respuestas en streaming
                 message = {
                     "id": f"chatcmpl-stream-{asyncio.get_event_loop().time()}",
