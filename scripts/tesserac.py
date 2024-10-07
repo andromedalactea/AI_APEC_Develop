@@ -1,13 +1,35 @@
 import pytesseract
 from pdf2image import convert_from_path
-import re
 from PyPDF2 import PdfReader
+import re
+import multiprocessing
+from PIL import ImageOps
 
-# Path to the Tesseract executable on Windows (if needed)
-# Uncomment if you're using Windows:
+# Ajusta el comando de Tesseract si estás en Windows:
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-def pdf_to_text(pdf_path, page=None, n=1):
+def preprocess_image(image):
+    """
+    Preprocess the image to improve OCR performance. 
+    This version converts the image to grayscale.
+    """
+    return ImageOps.grayscale(image)
+
+def process_single_page(page_image):
+    """
+    Extracts text from a single image using Tesseract OCR after preprocessing.
+    """
+    # Preprocess the image (convert to grayscale)
+    processed_image = preprocess_image(page_image)
+    
+    # You can configure the OCR based on your needs. Here, use Tesseract's default "legacy" OCR.
+    custom_config = r'--oem 3 --psm 3'  # Can adjust --psm or --oem if necessary
+    
+    # Perform OCR
+    page_text = pytesseract.image_to_string(processed_image, config=custom_config)
+    return page_text
+
+def pdf_to_text(pdf_path, page=None, n=1, dpi=150):
     """
     Converts a PDF file into text using Tesseract OCR, limiting the number of pages
     to process based on a central page (defined by 'page') and a number of pages before and after ('n').
@@ -15,7 +37,8 @@ def pdf_to_text(pdf_path, page=None, n=1):
     Args:
         pdf_path (str): Path to the PDF to convert.
         page (int, optional): Number of the central page to process. If None, the entire PDF is processed.
-        n (int): The number of pages before and after the 'page' to analyze.
+        n (int): The number of pages before and after 'page' to analyze.
+        dpi (int): DPI (Dots Per Inch) to use when converting PDF pages to images. Lower values can increase speed.
 
     Returns:
         str: The extracted text.
@@ -23,63 +46,62 @@ def pdf_to_text(pdf_path, page=None, n=1):
 
     # Get total number of pages in the PDF
     with open(pdf_path, "rb") as file:
-        pdf_reader = PdfReader(file)  # Cambia PdfFileReader por PdfReader
+        pdf_reader = PdfReader(file)
         total_pages = len(pdf_reader.pages)
-    
+
     print(f"PDF has {total_pages} pages.")
 
     # Determine the range of pages to process (if a specific central page is defined)
     if page is not None:
-        # Ensure that `page` is within the allowed range
-        page = max(1, min(page, total_pages))  # Adjust if the requested page is out of range
+        page = max(1, min(page, total_pages))  # Ensure the requested page is in the correct range
 
         if n == 0:
-            # Process only the target page
-            start_page = page
-            end_page = page
+            start_page, end_page = page, page
         else:
-            # Calculate the range of pages to process with `n` pages before and after
-            start_page = max(1, page - n)  # Ensure it doesn't go below page 1
-            end_page = min(total_pages, page + n)  # Ensure it doesn't exceed the total number of pages
+            start_page = max(1, page - n)
+            end_page = min(total_pages, page + n)
 
         print(f"Processing from page {start_page} to {end_page}...")
 
         # Convert only the needed pages to images
-        page_numbers = list(range(start_page - 1, end_page))  # Convert to zero-based index for pdf2image
-        pages_to_process = convert_from_path(pdf_path, first_page=start_page, last_page=end_page)
+        page_numbers = list(range(start_page - 1, end_page))
+        pages_to_process = convert_from_path(pdf_path, first_page=start_page, last_page=end_page, dpi=dpi)
     else:
-        # Process the entire PDF
         print("Processing all pages of the PDF...")
-        page_numbers = list(range(total_pages))  # All pages from 0 to total_pages - 1
-        pages_to_process = convert_from_path(pdf_path)
+        page_numbers = list(range(total_pages))
+        pages_to_process = convert_from_path(pdf_path, dpi=dpi)
 
-    # Initialize a string to store all the extracted text from the PDF
-    pdf_text = ""
+    print(f"Pages to process: {len(pages_to_process)}")
 
-    # Process the selected pages
-    for page_num, page_image in zip(page_numbers, pages_to_process):
-        print(f"Processing page {page_num + 1} of {total_pages}...")  # Output 1-based page number
-        
-        # Extract the text using Tesseract
-        page_text = pytesseract.image_to_string(page_image)
+    # Multiprocessing to handle multiple pages in parallel
+    with multiprocessing.Pool() as pool:
+        page_texts = pool.map(process_single_page, pages_to_process)
 
-        # Append the text from this page to the accumulator
-        pdf_text += page_text + "\n\n"
+    # Join the text extracted from all pages
+    pdf_text = "\n\n".join(page_texts)
 
-    # Post-processing: reduce multiple consecutive newlines to just two newlines
+    # Post-processing: remove excessive newlines
     pdf_text = re.sub(r'\s*\n\s*\n\s*\n+', '\n\n', pdf_text)
 
     return pdf_text
 
 
-# Usage example
 if __name__ == "__main__":
+    import time
+
     # Path to the PDF file
     pdf_path = "/home/andromedalactea/freelance/AI_APEC_Develop/data/Books-20240918T233426Z-001/Books/Lucy-Ann McFadden Editor, Paul Weissman Editor,.pdf"
     
     # Page to process (you can change this)
     target_page = 900  # Target (central) page
     n_range = 1  # Number of pages before and after
+    dpi = 150  # Reduce DPI for faster conversion
 
-    # Call the function to convert the PDF to text from `target_page` with `n_range`
-    print(pdf_to_text(pdf_path, page=target_page, n=n_range))
+    # Call the function to convert the PDF to text
+    start_time = time.time()
+    text= pdf_to_text(pdf_path, page=target_page, n=n_range, dpi=dpi)
+    print(text)
+    print(len(text))
+    end_time = time.time()
+
+    print(f"Time elapsed: {end_time - start_time:.2f} seconds")

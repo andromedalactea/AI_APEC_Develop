@@ -9,3 +9,5 @@ langchain_community
 langchain-chroma
 pytesseract 
 pdf2image
+pillow
+azure-cognitiveservices-vision-computervision

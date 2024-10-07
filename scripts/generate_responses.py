@@ -13,6 +13,7 @@ from prompts.prompts import system_prompt
 from fastapi.responses import JSONResponse, StreamingResponse
 from openai import OpenAI, AsyncOpenAI
 from dotenv import load_dotenv
+from concurrent.futures import ThreadPoolExecutor
 
 # Load environment variables from the .env file
 load_dotenv(override=True)
@@ -20,9 +21,15 @@ load_dotenv(override=True)
 async def generate_chat_response(data):
     try:
         client = OpenAI()
+
+        if data.get("model", "gpt-4o").split("&")[0] in ["o1-preview", "o1-preview-mini"]:
+            model = "gpt-4o"
+        else:  
+            model = data.get("model", "gpt-4o").split("&")[0]
+
         # Generate response with OpenAI
         completion = client.chat.completions.create(
-                                                model=data.get("model", "gpt-4o").split("&")[0],
+                                                model=model,
                                                 messages=data.get("messages", []),
                                                 stream=False,
                                                 max_tokens=data.get("max_tokens", 150),
@@ -54,7 +61,72 @@ async def generate_chat_response(data):
     except Exception as e:
         print(f"Error in generating chat responses: {e}")
         return JSONResponse(content={"error": {"message": "Internal server error"}}, status_code=500)
-    
+
+async def generate_chat_responses_o1_model(data):
+    try:
+        # Simular mensaje inicial indicando que el modelo está pensando
+        thinking_message = {
+            "id": f"chatcmpl-stream-thinking",
+            "object": "chat.completion.chunk",
+            "created": int(asyncio.get_event_loop().time()),
+            "model": data.get("model", "o1-preview"),
+            "choices": [{
+                "delta": {
+                    "content": "The model is thinking..."
+                },
+                "index": 0,
+                "finish_reason": None
+            }]
+        }
+        yield f"data: {json.dumps(thinking_message)}\n\n"
+        
+        # Necesitamos ejecutar la llamada a OpenAI en un executor para evitar bloquear el bucle principal
+        # donde las funciones sincrónicas bloquearían todo el procesamiento.
+        loop = asyncio.get_event_loop()
+
+        # Definimos la función de completions de OpenAI que será ejecutada
+        def get_openai_response():
+            return client.chat.completions.create(
+                model=data.get("model", "o1-preview").split("&")[0],
+                messages=data.get("messages", []),
+                stream=False,  # No estamos pidiendo un stream verdadero, solo una respuesta completa
+                max_completion_tokens=data.get("max_tokens", 150)
+            )
+
+        # Aquí usamos await para esperar la ejecución de la llamada sincrónica en el executor
+        completion = await loop.run_in_executor(executor, get_openai_response)
+
+        # Obtiene el contenido de la respuesta
+        response_content = completion.choices[0].message["content"]
+
+        # Crear el mensaje de respuesta
+        message = {
+            "id": f"chatcmpl-stream-{asyncio.get_event_loop().time()}",
+            "object": "chat.completion.chunk",
+            "created": int(asyncio.get_event_loop().time()),
+            "model": data.get("model", "o1-preview"),
+            "choices": [{
+                "delta": {
+                    "content": response_content
+                },
+                "index": 0,
+                "finish_reason": "stop"
+            }]
+        }
+        # Enviamos la respuesta final
+        yield f"data: {json.dumps(message)}\n\n"
+
+        # Enviar el mensaje de finalización de stream
+        yield "data: [DONE]\n\n"
+
+    except Exception as e:
+        print(f"Error in generating chat responses: {e}")
+        error_message = {
+            "error": {
+                "message": "Internal server error"
+            }
+        }
+        yield f"data: {json.dumps(error_message)}\n\n"
 
 async def generate_chat_responses_stream(data):
     try:
@@ -81,10 +153,8 @@ async def generate_chat_responses_stream(data):
             temperature=data.get("temperature", 0.1),
         )
 
-        # Use async for to handle streaming
-        # image_md = image_to_base64_markdown("/home/andromedalactea/freelance/AI_APEC_Develop/to_develop_purposes/ecuatorial.png", "Here is an image included in the Markdown text:")
-        # print(image_md)
-        # Extract the domain
+        
+        # Extract the domain for sources
         domain_docs = os.getenv("DOMAIN_DOCS")
 
         # Generate the URLs
@@ -124,6 +194,7 @@ async def generate_chat_responses_stream(data):
 
                 # Delete the message content
                 message_content = ""
+
                 yield event
 
         # Create the references in Markdown format

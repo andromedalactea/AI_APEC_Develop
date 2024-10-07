@@ -4,7 +4,7 @@ import logging
 
 # Local imports from the same directory
 from scripts.extract_available_openai_models import extract_openai_models
-from scripts.generate_responses import generate_chat_response, generate_chat_responses_stream
+from scripts.generate_responses import generate_chat_response, generate_chat_responses_stream, generate_chat_responses_o1_model
 
 # Import Third-Party Libraries
 from dotenv import load_dotenv
@@ -72,8 +72,13 @@ async def get_chat_completions(request: Request):
         if data.get('stream') is True:
             # Generar las respuestas de chat en forma de streaming
             logger.info("Generating chat responses in streaming...")
-            event_stream = generate_chat_responses_stream(data)
-            return StreamingResponse(event_stream, media_type="text/event-stream")
+            if data.get('model') == 'o1-preview& APEC':
+                print('-'*50)
+                event_stream = generate_chat_responses_o1_model(data)
+                return StreamingResponse(event_stream, media_type="text/event-stream")
+            else:
+                event_stream = generate_chat_responses_stream(data)
+                return StreamingResponse(event_stream, media_type="text/event-stream")
         else:
             # Return the full response at once
             return await generate_chat_response(data)
@@ -84,12 +89,12 @@ async def get_chat_completions(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    # from pyngrok import ngrok
-    # # Running in 8000 port
-    # # Persinalized domain
-    # domain = "sex.ngrok.app"  
+    from pyngrok import ngrok
+    # Running in 8000 port
+    # Persinalized domain
+    domain = "sex.ngrok.app"  
 
-    # # Configure ngrok with the port on which Flask is running
-    # ngrok_tunnel = ngrok.connect(8000, domain=domain)
-    # print('NGROK Tunnel URL:', ngrok_tunnel.public_url)
+    # Configure ngrok with the port on which Flask is running
+    ngrok_tunnel = ngrok.connect(8000, domain=domain)
+    print('NGROK Tunnel URL:', ngrok_tunnel.public_url)
     uvicorn.run(app, host="0.0.0.0", port=8000)
