@@ -4,14 +4,13 @@ from scripts.auxiliar_functions import absolute_path
 from scripts.tesserac import pdf_to_text  # Assuming this is your modified pdf_to_text function
 
 from dotenv import load_dotenv
-from pymongo import MongoClient
 
 from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
-# Import required for multiprocessing
-from multiprocessing import Pool
+# Import required for ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 
 # Load the environment variables
 load_dotenv(override=True)
@@ -34,7 +33,7 @@ def process_single_result(args):
         page_number = doc.metadata['page']
         try:
             # Extract text from the specific page using pdf_to_text
-            # Set num_workers=1 to avoid too many nested processes
+            # Set num_workers=1 to avoid too many nested threads
             extracted_text = pdf_to_text(pdf_path, page=page_number + 1, n=1, num_workers=1)
 
             # Use the extracted text as the processed text
@@ -78,10 +77,9 @@ def extract_context_from_vector_search(query: str = '', k: int = 4):
     # Prepare arguments for parallel processing
     args_list = [(index, doc, score) for index, (doc, score) in enumerate(results)]
 
-    # Use multiprocessing Pool to process results in parallel
-    # Adjust the number of processes if needed
-    with Pool(processes=min(k, os.cpu_count())) as pool:
-        filter_list = pool.map(process_single_result, args_list)
+    # Use ThreadPoolExecutor to process results in parallel
+    with ThreadPoolExecutor(max_workers=min(k, os.cpu_count())) as executor:
+        filter_list = list(executor.map(process_single_result, args_list))
 
     # Remove duplicates
     filter_list = list(set(filter_list))
