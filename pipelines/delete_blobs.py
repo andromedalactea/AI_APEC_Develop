@@ -6,7 +6,7 @@ blob_service_url = os.getenv("AZURE_BLOB_SERVICE_URL")
 sas_token = f"?{os.getenv('AZURE_BLOB_SAS_TOKEN')}"
 
 # Nombre del contenedor
-container_name = "johnny5container"
+container_name = "johnny5-container"
 
 # Inicializa el cliente del contenedor
 container_client = ContainerClient(account_url=blob_service_url, credential=sas_token, container_name=container_name)

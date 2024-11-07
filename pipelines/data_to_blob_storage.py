@@ -13,7 +13,7 @@ sas_token = f"?{os.getenv('AZURE_BLOB_SAS_TOKEN')}"
 blob_service_client = BlobServiceClient(account_url=blob_service_url, credential=sas_token)
 
 # Nombre del contenedor (previamente creado)
-container_name = "johnny5container"
+container_name = "johnny5-container"
 container_client = blob_service_client.get_container_client(container_name)
 
 # Ruta de la carpeta local (usa rutas absolutas o relativas sin "normpath")
@@ -23,7 +23,7 @@ def absolute_path(relative_path):
     return os.path.normpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), relative_path))
 
 # Ruta de la carpeta local
-local_folder_path = absolute_path("../data/Test/COMMANDER SHELL")
+local_folder_path = absolute_path(os.getenv("BASE_PATH_PIPELINE"))
 
 
 # Definir el nombre de la carpeta madre que aparecerá en Azure Blob Storage
