@@ -22,3 +22,5 @@ unstructured
 openpyxl
 pandas
 xlrd
+azure-storage-blob
+azure-identity

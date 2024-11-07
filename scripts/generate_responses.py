@@ -11,7 +11,7 @@ from prompts.prompts import system_prompt
 
 # Import Third-Party Libraries
 from fastapi.responses import JSONResponse, StreamingResponse
-from openai import OpenAI, AsyncOpenAI
+from openai import OpenAI, AsyncOpenAI, AzureOpenAI, AsyncAzureOpenAI
 from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor
 
@@ -20,13 +20,17 @@ load_dotenv(override=True)
 
 async def generate_chat_response(data):
     try:
-        client = OpenAI()
+        client = AzureOpenAI(
+                            azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+                            api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
+                            api_version="2024-10-01-preview"
+                            )
 
         if data.get("model", "gpt-4o").split("&")[0] in ["o1-preview", "o1-preview-mini"]:
             model = "gpt-4o"
         else:  
             model = data.get("model", "gpt-4o").split("&")[0]
-
+        model = "gpt-4o"
         # Generate response with OpenAI
         completion = client.chat.completions.create(
                                                 model=model,
@@ -141,12 +145,17 @@ async def generate_chat_responses_stream(data):
         data["messages"].insert(-1, {"role": "system", "content": system_prompt})
         
         print(data["messages"])
-        client = AsyncOpenAI()  # Use AsyncOpenAI for async handling
+        client = AsyncAzureOpenAI(
+                                    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+                                    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
+                                    api_version="2024-10-01-preview"
+                                    )  
+        # Use AsyncOpenAI for async handling
         print(data.get("model", "gpt-4o").split("&")[0])
 
         # Generate response with OpenAI using async
         stream = await client.chat.completions.create(
-            model=data.get("model", "gpt-4o").split("&")[0],
+            model = "gpt-4o",
             messages=data.get("messages", []),
             stream=True,
             max_tokens=data.get("max_tokens", 1000),
@@ -163,39 +172,40 @@ async def generate_chat_responses_stream(data):
         message_content = ""
         sources_used = []
         async for chunk in stream:
-            if chunk.choices[0].delta.content is not None:
-                message_content += chunk.choices[0].delta.content
+            if chunk.choices and len(chunk.choices) > 0:
+                if chunk.choices[0].delta.content not in [None, ""]:
+                    message_content += chunk.choices[0].delta.content
 
-                if message_content.count('{') != message_content.count('}') and '\n' not in message_content:
-                    continue
+                    if message_content.count('{') != message_content.count('}') and '\n' not in message_content:
+                        continue
 
-                # Replace the placeholders with the corresponding sources
-                message_content, sources_used_ = replace_sources(message_content, URLS)
-                
-                # Extend the sources used
-                sources_used.extend(sources_used_)
-                print(message_content)
+                    # Replace the placeholders with the corresponding sources
+                    message_content, sources_used_ = replace_sources(message_content, URLS)
+                    
+                    # Extend the sources used
+                    sources_used.extend(sources_used_)
+                    print(message_content)
 
-                # Formato alineado con la API de OpenAI para respuestas en streaming
-                message = {
-                    "id": f"chatcmpl-stream-{asyncio.get_event_loop().time()}",
-                    "object": "chat.completion.chunk",
-                    "created": int(asyncio.get_event_loop().time()),
-                    "model": data.get("model", "gpt-4o"),
-                    "choices": [{
-                        "delta": {
-                            "content":  message_content
-                        },
-                        "index": 0,
-                        "finish_reason": None
-                    }]
-                }
-                event = f"data: {json.dumps(message)}\n\n"
+                    # Formato alineado con la API de OpenAI para respuestas en streaming
+                    message = {
+                        "id": f"chatcmpl-stream-{asyncio.get_event_loop().time()}",
+                        "object": "chat.completion.chunk",
+                        "created": int(asyncio.get_event_loop().time()),
+                        "model": data.get("model", "gpt-4o"),
+                        "choices": [{
+                            "delta": {
+                                "content":  message_content
+                            },
+                            "index": 0,
+                            "finish_reason": None
+                        }]
+                    }
+                    event = f"data: {json.dumps(message)}\n\n"
 
-                # Delete the message content
-                message_content = ""
+                    # Delete the message content
+                    message_content = ""
 
-                yield event
+                    yield event
 
         # Create the references in Markdown format
         sources_used = list(sorted(set(sources_used)))

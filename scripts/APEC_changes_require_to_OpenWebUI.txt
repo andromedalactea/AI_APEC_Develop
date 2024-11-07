@@ -1,0 +1,10 @@
+/app/build/static/favicon.png       
+/app/build/static/splash.png      
+/app/build/static/splashdark.png 
+/app/build/favicon.png 
+/app/backend/open_webui/static/logo.png 
+/app/backend/open_webui/utils/logo.png 
+/app/backend/open_webui/config.py 
+/app/backend/open_webui/env.py  
+/app/backend/open_webui/static/favicon.png 
+/app/backend/open_webui/static/splash.png 
